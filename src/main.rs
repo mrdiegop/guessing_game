@@ -15,14 +15,18 @@ fn main() {
     
     loop {
 
-        
         println!("Please input your guess.");
+        
         let mut guess = String::new(); // inizializa una variable mutable
+        
         io::stdin()
             .read_line(&mut guess)  //metodo para leer una entrada de usuario
             .expect("Failed to read line"); // en caso que falla el metodo read_line, se imprime el mensaje de error
 
-        let guess: u32 = guess.trim().parse().expect("Please type a number!"); // convierte la variable inpu user a un i32
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("You guessed: {guess}");
 

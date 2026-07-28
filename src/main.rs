@@ -9,14 +9,15 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100); // numero random
 
-    let mut guess = String::new(); // inizializa una variable mutable
+    
 
     println!("The secret number is: {secret_number}"); // imprime el numero secreto
     
     loop {
+
         
         println!("Please input your guess.");
-
+        let mut guess = String::new(); // inizializa una variable mutable
         io::stdin()
             .read_line(&mut guess)  //metodo para leer una entrada de usuario
             .expect("Failed to read line"); // en caso que falla el metodo read_line, se imprime el mensaje de error
@@ -28,7 +29,10 @@ fn main() {
         match guess.cmp(&secret_number) {   // realiza una comparacion entre el numero secreto y el numero ingresado por el usuario
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => println!("You win!"),
+            Ordering::Equal =>{
+                    println!("You win!");
+                    break;
+            } 
     }
 
 
